@@ -2,7 +2,7 @@ import { input, number, password } from '@inquirer/prompts'
 import { DataType, PromptType } from './prompt.types'
 
 export class PromptService {
-	public async input(message: string, type: PromptType) {
+	public async input(message: string, type: PromptType): Promise<DataType> {
 		let data: DataType
 		switch (type) {
 			case 'input':
