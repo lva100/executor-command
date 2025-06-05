@@ -1,22 +1,17 @@
 import { input, number, password } from '@inquirer/prompts'
-import { DataType, PromptType } from './prompt.types'
 
 export class PromptService {
-	public async input(message: string, type: PromptType): Promise<DataType> {
-		let data: DataType
-		switch (type) {
-			case 'input':
-				data = await input({ message: message })
-				break
-			case 'number':
-				data = await number({ message: message })
-				break
-			case 'password':
-				data = await password({ message: message, mask: true })
-				break
-			default:
-				console.log('Введите корректный тип input')
+	public async input(message: string) {
+		return await input({ message: message })
+	}
+	public async number(message: string) {
+		const res = await number({ message: message })
+		if (typeof res == 'number') {
+			return res
 		}
-		return data
+		return 0
+	}
+	public async password(message: string) {
+		return await password({ message: message, mask: true })
 	}
 }
